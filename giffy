@@ -1,0 +1,20 @@
+#! /bin/bash
+
+#quickly creates animated gif from images
+DIR_IN="/home/$USER/Pictures/screen/";
+DIR_OUT="/home/$USER/Pictures/MY_GIFS/";
+
+echo "gif name?";
+read gif_name;
+
+mkdir -p $DIR_IN; 
+mkdir -p $DIR_OUT; 
+
+if [ "$(ls -A $DIR_IN)" ]; then
+        echo "Creating $gif_name.gif";
+        convert -loop 0 -delay 50 $DIR_IN* $DIR_OUT$gif_name.gif;
+        rm $DIR_IN*;
+        printf "$DIR_IN was cleaned!\n\n$gif_name.gif was created in $DIR_OUT!\n";
+else
+        echo "Error! No files in $DIR_IN!"
+fi
